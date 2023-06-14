@@ -1,0 +1,23 @@
+{%extends "blog/base.html" %}
+{% block content%}
+<article class="media content-section">
+    <div class="media-body">
+      <div class="article-metadata">
+        <a class="mr-2" href="{% url 'user_posts' object.auther.username%}">{{ object.auther }}</a>
+        <small class="text-muted">{{ object.date_posted|date:"F,d,Y"}}</small>
+      </div>
+      <h2 class="article-title">{{object.title }}</h2>
+      <p class="article-content">{{ object.content }}</p>
+    </div>
+    {% if object.auther == user%}
+  
+          <a class = "btn btn-secondary btn-sm mt-1 mb-1  mr-1" href="{%url 'post_update' post.id %}">Update</a>
+          <a class = "btn btn-danger btn-sm mt-1 mb-1  ml-1" href="{%url 'post_delete' post.id %}">Delete</a>
+       
+          {%endif%}
+  </article> 
+  <div >
+      <h2 >here is the post detail</h2>
+      <a class = "btn btn-outline-info" href="{{request.META.HTTP_REFERER}}">Back</a>
+  </div>
+{%endblock content%} 
